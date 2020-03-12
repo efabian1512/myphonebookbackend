@@ -12,7 +12,8 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
-@RequestMapping("api/v1/contact")
+
+@RequestMapping("https://myphonebookappbackend.herokuapp.com/contact")
 @RestController
 public class ContactController {
 
