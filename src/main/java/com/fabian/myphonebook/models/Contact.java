@@ -9,17 +9,28 @@ public class Contact {
     private final String name;
     private final String telephone;
     private final String email;
+    private final String address;
+    private final String city;
+    private final String country;
 
 
 
     public Contact(@JsonProperty("id") int id,
                     @JsonProperty("name") String name,
                     @JsonProperty("telephone") String telephone,
-                    @JsonProperty("email") String email){
+                    @JsonProperty("email") String email,
+                   @JsonProperty("address") String address,
+                   @JsonProperty("city") String city,
+                   @JsonProperty("country") String country
+                   ){
         this.id = id;
         this.name = name;
         this.telephone = telephone;
         this.email = email;
+        this.address = address;
+        this.city = city;
+        this.country = country;
+
 
     }
 
@@ -38,4 +49,10 @@ public class Contact {
     public String getEmail(){
         return email;
     }
+
+    public String getAddress(){return address; }
+
+    public String getCity(){return city; }
+
+    public String getCountry(){return country;}
 }

@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.UUID;
 
 
-@RequestMapping("https://myphonebookappbackend.herokuapp.com/contact")
+@RequestMapping("api/phonebook/contact")
 @RestController
 public class ContactController {
 

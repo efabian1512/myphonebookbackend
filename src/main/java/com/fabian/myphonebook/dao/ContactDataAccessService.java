@@ -17,21 +17,30 @@ public class ContactDataAccessService implements ContactDao {
     }
 
     @Override
-    public int addContact(Contact contact) {
-        String sql = "INSERT into contacts (name,telephone,email) VALUES (?,?,?)";
-        jdbcTemplate.update(sql, new Object[]{contact.getName(),contact.getTelephone(),contact.getEmail()} );
-        return 1;
+    public String addContact(Contact contact) {
+        String sqlContact = "INSERT into contacts (name,telephone,email,address,city,country) VALUES (?,?,?,?,?,?)";
+
+
+        jdbcTemplate.update(sqlContact,contact.getName(),contact.getTelephone(),contact.getEmail(),contact.getAddress(),
+        contact.getCity(),contact.getCountry());
+
+
+
+        return "Contact successfully added.";
     }
 
     @Override
     public List<Contact> selectAllContacts() {
-        final String sql = "SELECT id, name, telephone, email FROM contacts";
+        final String sql = "SELECT id, name, telephone, email,address,city,country FROM contacts";
         return jdbcTemplate.query(sql,(resultSet, index) -> {
             int id = (resultSet.getInt("id"));
             String name = resultSet.getString("name");
             String telephone = resultSet.getString("telephone");
             String email = resultSet.getString("email");
-            return new Contact(id,name,telephone,email);
+            String address = resultSet.getString("address");
+            String city = resultSet.getString("city");
+            String country = resultSet.getString("country");
+            return new Contact(id,name,telephone,email,address,city,country);
         });
 
 
@@ -39,7 +48,7 @@ public class ContactDataAccessService implements ContactDao {
 
     @Override
     public Optional<Contact> selectContactById(String id) {
-        final String sql = "SELECT id,name,telephone,email FROM contacts WHERE id = ?";
+        final String sql = "SELECT id,name,telephone,email,address,city,country FROM contacts WHERE id = ?";
 
         Contact contact = jdbcTemplate.queryForObject(
                 sql,
@@ -49,7 +58,10 @@ public class ContactDataAccessService implements ContactDao {
                     String name = resultSet.getString("name");
                     String telephone = resultSet.getString("telephone");
                     String email = resultSet.getString("email");
-                    return new Contact(contactId,name,telephone,email);
+                    String address = resultSet.getString("address");
+                    String city = resultSet.getString("city");
+                    String country = resultSet.getString("country");
+                    return new Contact(contactId,name,telephone,email,address,city,country);
 
 
                 });
@@ -57,28 +69,32 @@ public class ContactDataAccessService implements ContactDao {
     }
 
     @Override
-    public int deleteContactById(String id) {
+    public String deleteContactById(String id) {
         String sqlDelete = "DELETE from contacts WHERE id=?";
         Optional<Contact> contactMaybe = selectContactById(id);
         if(!contactMaybe.isPresent()){
-            return 0;
+            return "The contact you specify doesn't exist.";
         }
-        jdbcTemplate.update(sqlDelete,new Object[]{id});
-        return 1;
+        jdbcTemplate.update(sqlDelete,id);
+        return "Contact successfully deleted.";
 
     }
 
     @Override
-    public int updateContactById(String id, Contact contact) {
-        String sqlUpdate = "UPDATE contacts SET name= ?, telephone=?,email=? WHERE id=?";
+    public String updateContactById(String id, Contact contact) {
+        String sqlUpdate = "UPDATE contacts SET name= ?, telephone=?,email=?,address=?,city=?,country=? WHERE id=?";
         Optional<Contact> contactMaybe = selectContactById(id);
 
         if(!contactMaybe.isPresent()){
-            return 0;
+            return "Contact doesn't exists.";
         }
-        jdbcTemplate.update(sqlUpdate,new Object[]{contact.getName(),contact.getTelephone(),contact.getEmail(),id});
-        return 1;
+        jdbcTemplate.update(sqlUpdate,contact.getName(),contact.getTelephone(),contact.getEmail(),contact.getAddress(),
+                contact.getCity(),contact.getCountry(),id);
+        return "Contact successfully updated.";
 
     }
+
+
+
 }
 

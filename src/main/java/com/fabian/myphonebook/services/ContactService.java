@@ -21,7 +21,7 @@ public class ContactService {
         this.contactDao = contactDao;
     }
 
-    public int addPerson(Contact contact){
+    public String addPerson(Contact contact){
         return contactDao.addContact(contact);
     }
 
@@ -33,13 +33,11 @@ public class ContactService {
         return contactDao.selectContactById(id);
     }
 
-    public int deleteContactById(String id){
+    public String deleteContactById(String id){
         return contactDao.deleteContactById(id);
     }
 
-    public int updateContactById(String id, Contact newContact){
-        return contactDao.updateContactById(id,newContact);
-    }
+    public String updateContactById(String id, Contact newContact){ return contactDao.updateContactById(id,newContact);}
 
 }
 

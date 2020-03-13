@@ -7,18 +7,13 @@ import java.util.Optional;
 
 public interface ContactDao {
 
-    int addContact(Contact contact);
-
-   /* default int addContact(Contact1 contact){
-        //UUID id = int.randomUUID();
-        return addContact(id, contact);
-    }*/
+    String addContact(Contact contact);
 
     List<Contact> selectAllContacts();
 
     Optional<Contact> selectContactById(String id);
 
-    int deleteContactById(String id);
+    String deleteContactById(String id);
 
-    int updateContactById(String id, Contact contact);
+    String updateContactById(String id, Contact contact);
 }
