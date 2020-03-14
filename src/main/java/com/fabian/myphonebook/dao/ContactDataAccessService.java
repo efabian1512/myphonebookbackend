@@ -31,7 +31,7 @@ public class ContactDataAccessService implements ContactDao {
 
     @Override
     public List<Contact> selectAllContacts() {
-        final String sql = "SELECT id, name, telephone, email,address,city,country FROM contacts";
+        final String sql = "SELECT id, name, telephone, email,address,city,country FROM contacts ORDER BY name asc";
         return jdbcTemplate.query(sql,(resultSet, index) -> {
             int id = (resultSet.getInt("id"));
             String name = resultSet.getString("name");
