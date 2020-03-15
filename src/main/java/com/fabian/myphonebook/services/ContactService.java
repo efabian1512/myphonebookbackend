@@ -6,6 +6,8 @@ import com.fabian.myphonebook.dao.ContactDao;
 import com.fabian.myphonebook.models.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,6 +40,8 @@ public class ContactService {
     }
 
     public String updateContactById(String id, Contact newContact){ return contactDao.updateContactById(id,newContact);}
+
+
 
 }
 

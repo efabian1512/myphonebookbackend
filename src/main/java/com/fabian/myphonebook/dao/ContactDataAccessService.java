@@ -1,6 +1,11 @@
 package com.fabian.myphonebook.dao;
 
+import com.fabian.myphonebook.exception.ApiRequestException;
 import com.fabian.myphonebook.models.Contact;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -81,7 +86,7 @@ public class ContactDataAccessService implements ContactDao {
     }
 
     @Override
-    public String updateContactById(String id, Contact contact) {
+    public String updateContactById(String id, Contact contact)  {
         String sqlUpdate = "UPDATE contacts SET name= ?, telephone=?,email=?,address=?,city=?,country=? WHERE id=?";
         Optional<Contact> contactMaybe = selectContactById(id);
 
@@ -93,7 +98,6 @@ public class ContactDataAccessService implements ContactDao {
         return "Contact successfully updated.";
 
     }
-
 
 
 }

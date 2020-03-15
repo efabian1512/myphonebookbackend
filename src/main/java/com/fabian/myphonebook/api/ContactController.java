@@ -2,16 +2,22 @@ package com.fabian.myphonebook.api;
 
 
 
+import com.fabian.myphonebook.exception.ApiRequestException;
 import com.fabian.myphonebook.models.Contact;
 import com.fabian.myphonebook.services.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
-
+@CrossOrigin("https://myphoneboook.herokuapp.com")
 @RequestMapping("api/phonebook/contact")
 @RestController
 public class ContactController {
@@ -46,6 +52,11 @@ public class ContactController {
 
     @PutMapping(path = "{id}")
     public void updateContact(@PathVariable("id") String id,@Valid @NonNull @RequestBody Contact contactToUpdate ){
-        contactService.updateContactById(id,contactToUpdate);
+
+           contactService.updateContactById(id,contactToUpdate);
+
+
     }
+
 }
+
