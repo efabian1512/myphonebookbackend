@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@CrossOrigin("https://myphoneboook.herokuapp.com")
+/*@CrossOrigin("https://myphoneboook.herokuapp.com")*/
 @RequestMapping("api/phonebook/contact")
 @RestController
 public class ContactController {
