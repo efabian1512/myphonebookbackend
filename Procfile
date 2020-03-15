@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar target/*.jar --p $9090
+web: java $JAVA_OPTS -jar target/*.jar --p $PORT
