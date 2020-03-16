@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 
 
 public class Contact {
-    private final int id;
+    private int id;
     @NotBlank
     private final String name;
     private final String telephone;
@@ -55,4 +55,8 @@ public class Contact {
     public String getCity(){return city; }
 
     public String getCountry(){return country;}
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

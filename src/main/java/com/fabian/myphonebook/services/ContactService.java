@@ -6,8 +6,6 @@ import com.fabian.myphonebook.dao.ContactDao;
 import com.fabian.myphonebook.models.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,13 +33,15 @@ public class ContactService {
         return contactDao.selectContactById(id);
     }
 
-    public String deleteContactById(String id){
-        return contactDao.deleteContactById(id);
+    public void deleteContactById(String id){
+        contactDao.deleteContactById(id);
     }
 
-    public String updateContactById(String id, Contact newContact){ return contactDao.updateContactById(id,newContact);}
+    public void updateContactById(String id, Contact newContact){ contactDao.updateContactById(id,newContact);}
 
-
+    public boolean exists(String id){
+        return contactDao.exists(id);
+    }
 
 }
 
